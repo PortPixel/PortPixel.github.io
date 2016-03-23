@@ -1,0 +1,32 @@
+.main-article h1{font-size:50px; color#000;}
+
+
+.main-article p{
+	font-family: 'roboto_slabregular';
+	font-size: 18px;
+	line-height: 1.5;
+	color: #858585;
+}
+
+.main-article-content {
+	  padding-top: 35px;
+	  padding: 25px 18px;
+}
+
+.main-article h3{
+	font-family: 'roboto_slabregular';
+	font-size: 35px;
+	font-weight: bold;
+	color: #000;
+	font-family: 'Shift', sans-serif;
+	padding:20px 0px 0px;
+}
+
+.main-article-content h1 {
+	font-family: 'roboto_slabregular';
+	font-size: 50px;
+	font-weight: bold;
+	color: #000;
+	font-family: 'Shift', sans-serif;
+	padding:20px 0px 0px;
+}
