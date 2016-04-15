@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Space game test - Vlaros.com</title>
 	<style>
-	game {
+	.container {
 	width: 100%;
     height: 100%;
 	}
@@ -14,7 +13,6 @@
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
-
 }
 	h2 {
 	font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
@@ -23,21 +21,79 @@
 	font-variant: normal;
 	font-weight: 500;
 	color:grey;
-
 }
 	.top {width:100%;}
 	</style>
 </head>
 
 <body>
-<div class="game" align="center">
+<div class="container" align="center">
 	<div class="top">
 	<h1>How to learn effectively</h1>
 	<h2>A guide by Professor Bella End</h2>
-	<img src="https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/512/wink.png" alt="Smiley face" height="42" width="42">
+	<img id="myImage" onclick="changeImage() ; toggle()" src="wink.png" alt="Smiley face" height="42" width="42">
 	</div>
+	<div id="game-container">
 <script src=https://phosphorus.github.io/embed.js?id=104338195&auto-start=true&light-content=true></script>
 </div>
+</div>
+
+<script language="javascript"> 
+
+
+function toggle() {
+	var ele = document.getElementById("toggleText");
+	var text = document.getElementById("displayText");
+	var gamediv = document.getElementById("game-container")
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+			gamediv.style.display = "block";
+		/* text.innerHTML = " "; */
+  	}
+	else {
+		ele.style.display = "block";
+		gamediv.style.display = "none";
+		/* text.innerHTML = " "; */
+	}
+} 
+
+function changeImage() {
+    var image = document.getElementById('myImage');
+    if (image.src.match("wink2")) {
+        image.src = "wink.png";
+    } else {
+        image.src = "wink2.png";
+    }
+}
+</script>
+ 
+
+<div id="toggleText" align="center" style="display: none"><p><span>A paper published in&nbsp;</span><a href="http://psi.sagepub.com/content/14/1/4.full?ijkey=Z10jaVH/60XQM&amp;keytype=ref&amp;siteid=sppsi"><em>Psychological Science in the Public Interest</em></a><em>&nbsp;</em><span>evaluated ten techniques for improving learning, ranging from mnemonics to highlighting and came to some surprising conclusions.&nbsp;</span></p>
+<p><img src="http://assets1.bigthink.com/system/tinymce_assets/180/original/Learning-Tecniques-Table.jpg?1360943085" alt="" width="510" height="383" /></p>
+<p>The report is quite a heavy document so I&rsquo;ve summarised the techniques below based on the conclusions of the report regarding effectiveness of each technique. Be aware that everyone has their own style of learning, the evidence suggests that just because a technique works or does not work for other people does not necessarily mean it will or won&rsquo;t work well for you. If you want to know how to revise or learn most effectively you will still want to experiment on yourself a little with each technique before writing any of them off.</p>
+<p><strong>Elaborative Interrogation (Rating = moderate)</strong></p>
+<p><strong><img src="http://assets1.bigthink.com/system/tinymce_assets/181/original/Why.jpg?1360944045" alt="" width="510" height="510" /></strong></p>
+<p>A method involving creating explanations for <em>why</em> stated facts are true. The method involves concentrating on <em>why</em> questions rather than <em>what</em> questions and creating questions for yourself as you are working through a task. To do this yourself, after reading a few paragraphs of text ask yourself to explain &ldquo;why does x = y?&rdquo; and use your answers to form your notes. This is a good method because it is simple, so anyone can apply it easily. It does however require enough prior knowledge to enable you to generate good questions for yourself, so this method may be best for learners with experience in a subject. The technique is particularly efficient with regard to time, one study found that elaborative learning took 32 mins as opposed to 28 mins simply reading.</p>
+<p>An example of elaborative interrogation for the above paragraph could be:</p>
+<p><em>Elaborative learning is useful for proficient learners because it allows them to apply their prior knowledge effectively to process new information. It is rated as effective because it is time efficient and relatively easy to perform.</em></p>
+<blockquote>
+<p><em>&ldquo;The current evidence base for elaborative learning is positive but lacking"</em></p>
+</blockquote>
+<p><strong>Self Explanation (Rating = moderate)</strong>&nbsp;</p>
+<p><img src="http://assets4.bigthink.com/system/tinymce_assets/182/original/How.jpg?1360944498" alt="" width="510" height="472" /></p>
+<p>A technique that is useful for abstract learning. The technique involves explaining and recording <em>how </em>one solves or understands problems as they work and giving reasons for choices that are made. This was found to be more effective if done while learning as opposed to after learning. Self explanation has been found to be effective with learners ranging from children in kindergarten to older students working on algebraic formulas and geometric theorems. &nbsp;Like elaborative explanation, self explanation benefits from its simplicity. Unlike elaborative learning, self explanation was found to double the amount of time spent on a task in comparison to a reading control group.</p>
+<blockquote>
+<p><em>&ldquo;The core component of self-explanation involves having students explain some aspect of their processing during learning&rdquo;</em></p>
+</blockquote>
+<p><strong>Summarisation (Rating = low)</strong></p>
+<p><img src="http://assets2.bigthink.com/system/tinymce_assets/186/original/Writing.jpg?1360944728" alt="" width="510" height="376" /></p>
+<p>An old staple, tested by having participants summarise every page of text in to a few short lines. Summarising and note taking were found to be beneficial for preparing for written exams but less useful for types of tests that do not require students to generate information &ndash; such as multiple choice tests. Summarising was rated as being likely less beneficial than other methods available but more useful than the most common methods students use &ndash; highlighting, underlining and rereading.</p>
+<blockquote>
+<p>&ldquo;It can be an effective learning strategy for learners who are already skilled at summarizing&rdquo;</p>
+</blockquote>
+</div>
+
+
 </body>
 
 </html>
