@@ -31,9 +31,7 @@
 	padding:20px 0px 0px;
 }
 
-.main-article .home-main-news-item{
-	min-width: 400px;
-}
+
 
 @media (max-width: 500px) {
 	.main-article {
