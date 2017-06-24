@@ -40,11 +40,6 @@
 
 
 
-
-
-
-
-
 			But I suppose at least you made it to here, so that's something
 
 
@@ -81,19 +76,48 @@
 		#link {
 			border: 1px solid #002b7a;
 		}
+		#actuallink-container {
+			width: 50%;
+		  	margin: 0 auto;
+		}
+		h3 {
+			font-size: 2.5vw;
+		}
+		#actuallink {
+			color: white;
+		}
 	</style>
 </head>
 <body>
+	<div id="actuallink-container">
+		<div id="actuallink">
+			<h3>https://scratch.mit.edu/projects/167179138/
+			</h3>
+		</div>
+	</div>
 	<div id="link-container" >
-		<a id="link" href="https://scratch.mit.edu/projects/167179138/"></a>
+		<a id="link" onclick="changeState()"></a>
 	</div>
 	<script>
 		function a () {
 			document.getElementById("link-container").style.marginTop = document.getElementById('html').clientHeight/100*40;
+			document.getElementById("actuallink-container").style.marginTop = document.getElementById('html').clientHeight/100*40;
 		}
 		setInterval(a,1000/60)
+		
+		function changeState() {
+			var div = document.getElementById('actuallink-container');
+			if (div.style.display === 'none') {
+				div.style.display = 'block';
+			} else {
+				div.style.display = 'none';
+			}
+		}
+		
+		changeState()
 	</script>
-	 <!-- Google Analytics -->
+	
+	<!-- Google Analytics -->
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
