@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<!-- Google Analytics -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76453850-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Analytics end -->
+		<title>Particles by Spanish Panda</title>
+		
+	<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style>
+			canvas {
+				background-color: #00001a;
+			}
+			#body {overflow:hidden;}
+			* {
+   				margin: 0px;
+   				padding: 0px;
+			}
+		</style>
+	</head>
+	<body id="body" onload="startGame()">
+	<script>"use strict"
+function startGame(){myGameArea.start()}function drawRotatedRect(e,a,t,r,s,c){ctx=myGameArea.context,ctx.save(),ctx.beginPath(),ctx.translate(e,a),ctx.rotate(s*Math.PI/180),ctx.rect(-t/2,-r,t,r),ctx.fillStyle=c,ctx.fill(),ctx.restore()}function drawRotatedImage(e,a,t,r,s,c){ctx.save(),ctx.translate(a,t),ctx.rotate(c*Math.PI/180),ctx.drawImage(e,-(r/2),-(s/2),r,s),ctx.restore()}function drawRotatedNonCenteredImage(e,a,t,r,s,c){ctx.save(),ctx.translate(a,t),ctx.rotate(c*Math.PI/180),ctx.drawImage(e,-(r/2),-s,r,s),ctx.restore()}function toRadians(e){return e*(Math.PI/180)}function component(e,a,t,r,s){this.gamearea=myGameArea,this.width=e,this.height=a,this.speedX=0,this.speedY=0,this.x=r,this.y=s,this.v=0,this.update=function(){drawRotatedRect(camerax-this.x,cameray-this.y,this.width,this.height,direction,t)},this.newPos=function(){this.x+=this.speedX,this.y+=this.speedY}}function updateGameArea(){function e(){document.getElementById("canvas").style.left=window.mouseX}function a(){mouseState=1}function t(){mouseState=0}function r(e,a){return Math.atan2(a,e)*(180/Math.PI)+90}function s(e,a){return Math.sqrt(Math.pow(e,2)+Math.pow(a,2))}function c(e){return e*(Math.PI/180)}function o(){var e
+for(e=0;e<particles.length;e+=4){var a
+for(a=0;a<particles.length;a+=4)if(e!=a){var t=r(particles[e]-particles[a],particles[e+1]-particles[a+1])
+particles[e+2]+=Math.sin(c(t))/Math.pow(s(particles[e]-particles[a],particles[e+1]-particles[a+1]),.5)*-1,particles[e+3]+=Math.cos(c(t))/Math.pow(s(particles[e]-particles[a],particles[e+1]-particles[a+1]),.5),particles[e+2]+=Math.sin(c(t))/Math.pow(s(particles[e]-particles[a],particles[e+1]-particles[a+1]),2)*1500,particles[e+3]+=Math.cos(c(t))/Math.pow(s(particles[e]-particles[a],particles[e+1]-particles[a+1]),2)*-1500}}for(e=0;e<particles.length;e+=4)particles[e+2]=.95*particles[e+2],particles[e+3]=.95*particles[e+3],particles[e]+=particles[e+2],particles[e+1]+=particles[e+3]}function i(e){var a
+for(a=0;a<particles.length;a+=4){var t
+for(t=4*Math.floor(Math.random()*e);t<particles.length;t+=4*e)if(a!=t){var o=r(particles[a]-particles[t],particles[a+1]-particles[t+1])
+particles[a+2]+=Math.sin(c(o))/Math.pow(s(particles[a]-particles[t],particles[a+1]-particles[t+1]),1)*-1*e/2,particles[a+3]+=Math.cos(c(o))/Math.pow(s(particles[a]-particles[t],particles[a+1]-particles[t+1]),1)*e/2,particles[a+2]+=Math.sin(c(o))/Math.pow(s(particles[a]-particles[t],particles[a+1]-particles[t+1]),4)*1500*e/2,particles[a+3]+=Math.cos(c(o))/Math.pow(s(particles[a]-particles[t],particles[a+1]-particles[t+1]),4)*-1500*e/2}}for(a=0;a<particles.length;a+=4)particles[a+2]=.95*particles[a+2],particles[a+3]=.95*particles[a+3],particles[a]+=particles[a+2],particles[a+1]+=particles[a+3]}function n(){var e
+for(e=0;e<particles.length;e+=4)ctx.fillStyle="#FFFFFF",ctx.fillRect((camerax-particles[e])*zoom,(cameray-particles[e+1])*zoom,5*zoom,5*zoom)}function m(e,a){particles.push(e,a,0,0)}function l(e){var a
+for(a=0;e>a;a++)m(camerax-mouseposx/zoom+60*Math.random()-30,cameray-mouseposy/zoom+60*Math.random()-30)}myGameArea.clear(),frame+=1
+var p=document.getElementById("canvas")
+p.getContext("2d")
+document.onmousemove=function(e){var a=e||window.event
+window.mouseX=a.clientX,window.mouseY=a.clientY,mouseposx=window.mouseX,mouseposy=window.mouseY},window.onload=function(){setInterval(e,1e3)},document.getElementById("body").onmousedown=function(){a()},document.getElementById("body").onmouseup=function(){t()},myGameArea.keys&&myGameArea.keys[48]&&(cameraXOffset-=canvascenterx/zoom-canvascenterx/(zoom/1.1),cameraYOffset-=canvascentery/zoom-canvascentery/(zoom/1.1),zoom/=1.1),myGameArea.keys&&myGameArea.keys[57]&&(cameraXOffset-=canvascenterx/zoom-canvascenterx/(1.1*zoom),cameraYOffset-=canvascentery/zoom-canvascentery/(1.1*zoom),zoom=1.1*zoom),canvascenterx=window.innerWidth/2,canvascentery=window.innerHeight/2,myGameArea.canvas.width=2*canvascenterx,myGameArea.canvas.height=2*canvascentery,camerax=cameraXOffset,cameray=cameraYOffset,myGameArea.keys&&myGameArea.keys[37]&&(cameraXOffset+=6/zoom),myGameArea.keys&&myGameArea.keys[39]&&(cameraXOffset-=6/zoom),myGameArea.keys&&myGameArea.keys[38]&&(cameraYOffset+=6/zoom),myGameArea.keys&&myGameArea.keys[40]&&(cameraYOffset-=6/zoom)
+var y
+for(y=0;framesToSkip+1>y;y++)particles.length/4>350?i(Math.floor(particles.length/4)):o()
+n(),myGameArea.keys&&myGameArea.keys[32]&&frame%5==0&&m(camerax-mouseposx/zoom+30*Math.random(),cameray-mouseposy/zoom+30*Math.random()),myGameArea.keys&&myGameArea.keys[49]&&m(camerax-mouseposx/zoom+30*Math.random(),cameray-mouseposy/zoom+30*Math.random()),myGameArea.keys&&myGameArea.keys[50]&&l(2),myGameArea.keys&&myGameArea.keys[51]&&l(5),myGameArea.keys&&myGameArea.keys[52]&&l(10),myGameArea.keys&&myGameArea.keys[53]&&l(20),delta=(Date.now()-lastCalledTime)/1e3,lastCalledTime=Date.now(),fps.splice(0,1),fps.push(1/delta)
+for(var h=0,f=0;30>f;)h+=fps[f],f++
+ctx=myGameArea.context,ctx.font="30px Arial",ctx.fillStyle="white",ctx.fillText(Math.round(h/30),10,50)}function pause(){var e
+for(e=0;e<particles.length;e+=4)particles[e+2]=0,particles[e+3]=0}function test(e){if(void 0!==e){var a
+for(a=0;a<particles.length;a+=4)particles[a]=Math.random()*e-e/2,particles[a+1]=Math.random()*e-e/2}else{var a
+for(a=0;a<particles.length;a+=4)particles[a]=1e3*Math.random()-500,particles[a+1]=1e3*Math.random()-500}}function createGrid(e,a,t){if(void 0!==t){var r
+for(r=-e/2;e/2>r;r++){var s
+for(s=-e/2;e/2>s;s++)particles.push(25*r+a,25*s+t,0,0)}}else{var r
+for(r=-e/2;e/2>r;r++){var s
+for(s=-e/2;e/2>s;s++)particles.push(25*r,25*s,0,0)}}}function createGrid2(e,a,t){if(void 0!==t){var r
+for(r=-e/2;e/2>r;r++){var s
+for(s=-e/2;e/2>s;s++)particles.push(25*r+a,25*s+t,0,0)}}else{var r
+for(r=-e/2;e/2>r;r++){var s
+for(s=-e/2;e/2>s;s++)particles.push(1*r,1*s,0,0)}}}var mouseState=0,playerIds=[],users={},camerax=0,cameray=0,mouseposx=0,mouseposy=0,canvascenterx=480,canvascentery=270,zoom=1,frame=0,controls=3,ctx,fps=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],lastCalledTime,particles=[],delta,cameraXOffset=0,cameraYOffset=0,framesToSkip=0,myGamePiece,myGameArea={canvas:document.createElement("canvas"),start:function(){this.canvas.width=2*canvascenterx,this.canvas.height=2*canvascentery,this.canvas.id="canvas",this.context=this.canvas.getContext("2d"),document.body.insertBefore(this.canvas,document.body.childNodes[0]),this.interval=setInterval(updateGameArea,1e3/60),window.addEventListener("keydown",function(e){myGameArea.keys=myGameArea.keys||[],myGameArea.keys[e.keyCode]="keydown"==e.type}),window.addEventListener("keyup",function(e){myGameArea.keys[e.keyCode]="keydown"==e.type})},clear:function(){this.context.clearRect(0,0,this.canvas.width,this.canvas.height)}}
+</script>
+  </body>
+</html>
