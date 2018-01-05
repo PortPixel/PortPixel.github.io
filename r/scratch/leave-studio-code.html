@@ -1,0 +1,24 @@
+<html>
+    <head>
+    </head>
+    
+    <body>
+        <h1>
+            Studio leaving tool
+        </h1>
+        <p>
+            For anyone who accepted the join invitation and now wants to leave. If you are still interesterd in the topic of Machine Learning but don't want the messages, you might want to follow the <a href="https://scratch.mit.edu/studios/4600284/">main studio</a>. It will be updated a maxium of 2x a week, so you won't get a load of messages, I promise ;)
+        </p>
+        <p>To run the code go to any Scratch.mit.edu page, and copy and paste the code below into your browser's console (ctrl + opt + J on a mac, F12 on windows), and then press enter. You will be removed from the studio.
+        </p>
+        <p>~<a href="https://scratch.mit.edu/users/Vlaros/">Vlaros</a> / <a href="https://scratch.mit.edu/users/TheGamer-/">TheGamer-</a></p>
+        <HR></HR>
+        <p>
+            var scr = document.createElement("script");
+            scr.src = "http://code.jquery.com/jquery-1.9.1.min.js";
+            document.body.appendChild(scr);
+            $.ajax({type: "PUT",url: "https://scratch.mit.edu/site-api/users/curators-in/4600295/remove/?usernames=" + Scratch.INIT_DATA.LOGGED_IN_USER.model.username}); $( document ).ajaxComplete(function() { location.reload(); });
+        </p>
+    </body>
+
+
