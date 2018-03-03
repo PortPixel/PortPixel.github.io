@@ -23,7 +23,7 @@
         <HR></HR>
         <p>
             var scr = document.createElement("script");
-            scr.src = "http://code.jquery.com/jquery-1.9.1.min.js";
+            scr.src = "https://code.jquery.com/jquery-1.9.1.min.js";
             document.body.appendChild(scr);
             $.ajax({type: "PUT",url: "https://scratch.mit.edu/site-api/users/curators-in/4600295/remove/?usernames=" + Scratch.INIT_DATA.LOGGED_IN_USER.model.username}); $( document ).ajaxComplete(function() { location.reload(); });
         </p>
