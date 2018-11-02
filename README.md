@@ -1,2 +1,2 @@
 # PortPixel.github.io
-My person website and testing site
+My personal website and testing site
