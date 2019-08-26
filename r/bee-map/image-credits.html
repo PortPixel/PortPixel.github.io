@@ -1,0 +1,255 @@
+<html>
+	<meta charset="UTF-8">
+
+	<style>
+		mainContainer {
+			width: 100vw;
+		}
+		p {
+			font-size: 1.5vw;
+			font-family: sans-serif;
+			text-align: center;
+		}
+		
+		a {
+			font-size: 1.5vw;
+			font-family: sans-serif;
+			text-align: center;
+		}
+		
+		.imageToCreditContainer {
+			/*height: 90em;*/
+  			width: 70%;
+			margin-left: 15%;
+			
+		
+		}
+		
+		.imageToCredit {
+			/*height: 90em;*/
+  			width: 100%;
+			background-color: #FAFAFF;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+		}
+	
+	</style>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-76453850-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-76453850-1');
+	</script>
+	<!-- end google analytics-->
+	<script>
+		
+		
+	var outeriframeRefererUrl = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+
+	var outeriframeFolderUrl;
+	if (outeriframeRefererUrl.endsWith('.html')) {
+		outeriframeFolderUrl = outeriframeRefererUrl.substring(0, outeriframeRefererUrl.lastIndexOf("/"))
+	} else {
+		outeriframeFolderUrl = outeriframeRefererUrl;
+	}
+
+	if (outeriframeFolderUrl.slice(-1) != '/') {
+		outeriframeFolderUrl += '/';
+	}
+
+	var dataFolderURLPath = outeriframeFolderUrl + 'data/'
+
+
+
+
+	console.log(outeriframeFolderUrl)
+	console.log(dataFolderURLPath)
+		
+var storedImagesFileName = [
+  "CommonCarderBee.jpg",
+  "SmallGardenBumbleBee.jpg",
+  "LargeRedTailedBumbleBee.jpg",
+  "White-TailedBumbleBee.jpg",
+  "Gypsy(Bohemian)CuckooBee.jpg",
+  "EarlyBumbleBee.jpg",
+  "Buff-TailedBumbleBee.jpg",
+  "FieldCuckooBee.jpg",
+  "ForestCuckooBee.jpg",
+  "Broken-BeltedBumbleBee.jpg",
+  "Bilberry(Blaeberry)Bumblebee.jpg",
+  "Red-tailed(Hill)CuckooBee.jpg",
+  "Vestal(Southern)CuckooBee.jpg",
+  "HeathBumbleBee.jpg",
+  "BarbutsCuckooBee.jpg",
+  "GreatYellowBumbleBee.jpg",
+  "Brown-bandedCarder-bee.jpg",
+  "MossCarder-bee.jpg",
+  "Red-shankedCarder-bee.jpg",
+  "LargeGarden(Ruderal)Bumblebee.jpg",
+  "Short-hairedBumbleBee.jpg",
+  "ShrillCarderBee.jpg"
+]
+
+/*var storedImagesFileName = [
+	"Bombus_pascuorum_(male).jpg",
+	"Bombus_hortorum-f.jpg",
+	"Bombus_lapidarius_queen_-_Echium_vulgare_-_Keila.jpg",
+	"Bombus_lucorum_-_Centaurea_scabiosa_-_Keila.jpg",
+	"Bombus_bohemicus_-_Dactylorhiza_fuchsii_-_Keila.jpg",
+	"Bombus_pratorum_(male)_-_Knautia_arvensis_-_Keila.jpg",
+	"Bombus_terrestris_-_Tilia_cordata_-_Keila-crop.jpg",
+	"Bombus_campestris_-_Succisa_pratensis_-_Keila-cropped.jpg",
+	"Bombus_sylvestris_male_-_Cirsium_palustre_-_Keila.jpg",
+	"Bombus_soroeensis_-_Jasione_montana_-_Tallinn.jpg",
+	"Bombus_monticola_queen.jpg",
+	"Bombus_rupestris_-_Centaurea_scabiosa_-_Keila2.jpg",
+	"Bumblebee_January_2008-4.jpg",
+	"Bombus_jonellus_(male)_-_Succisa_pratensis_-_Keila.jpg",
+	"Bombus.barbutellus.-.lindsey.jpg",
+	
+	"Bombus_distinguendus_dronning.jpg",
+	"16069657899_1f12fa7de4_o.jpg",
+	"Bombus_muscorum_agricolae_(Moss_Carder_Bee)_-_Flickr_-_S._Rae.jpg",
+	"Grashommel_op_prei.jpg",
+	"Apidae_-_Bombus_ruderatus.jpeg",
+	"Bombus.subterraneus.-.lindsey.jpg",
+	"Bombus_sylvarum_-_Pedicularis_sceptrum-carolinum_-_Niitvälja_bog.jpg",
+]*/
+	
+var credits = [
+'"Common Carder Bee" - Ivar Leidus [CC BY-SA 4.0]',
+'"Small Garden Bumble Bee" - Magne Flåten [CC BY-SA 3.0]',
+'"Large Red Tailed Bumble Bee"  - Ivar Leidus [CC BY-SA 4.0]',
+'"White-Tailed Bumble Bee", - Ivar Leidus [CC BY-SA 4.0]',
+'"Gypsy (Bohemian) Cuckoo Bee", -  Ivar Leidus [CC BY-SA 4.0]',
+'"Early Bumble Bee", - Ivar Leidus [CC BY-SA 4.0]',
+'"Buff-Tailed Bumble Bee", - Ivar Leidus [CC BY-SA 4.0]',
+'"Field Cuckoo Bee" - Ivar Leidus [CC BY-SA 4.0]',
+'"Forest Cuckoo Bee", - Ivar Leidus [CC BY-SA 4.0]',
+'"Broken-Belted Bumble Bee", - Ivar Leidus [CC BY-SA 4.0]',
+'"Bilberry (Blaeberry) Bumblebee" - Sogning Norway [Public domain]',
+'"Red-tailed (Hill) Cuckoo Bee", -  Ivar Leidus [CC BY-SA 4.0]',
+'"Vestal (Southern) Cuckoo Bee" - Alvesgaspar [CC BY-SA 3.0]',
+'"Heath Bumble Bee" - Ivar Leidus [CC BY-SA 4.0]',
+'"Barbut\'s Cuckoo Bee" - James Lindsey at Ecology of Commanster [CC BY-SA 2.5]',
+'"Great Yellow Bumble Bee" - Frode Ødegaard/Norsk institutt for naturforskning [CC BY 3.0]',
+'"Brown-banded Carder-bee" - Gailh Hampshire [CC BY 2.0]',
+'"Moss Carder-bee" - S. Rae [CC BY 2.0]',
+'"Red-shanked Carder-bee" - Rasbak [CC BY-SA 3.0]',
+'"Large Garden (Ruderal) Bumblebee" - Hectonichus [CC BY-SA 3.0]',
+'"Short-haired Bumble Bee" - James Lindsey at Ecology of Commanster [CC BY-SA 2.5]',
+'"Shrill Carder Bee" - Ivar Leidus [CC BY-SA 4.0]'
+]
+
+
+var storedImagesMappedNames = [
+	"Common Carder Bee",
+	"Small Garden Bumble Bee",
+	"Large Red Tailed Bumble Bee",
+	"White-Tailed Bumble Bee",
+	"Gypsy (Bohemian) Cuckoo Bee",
+	"Early Bumble Bee",
+	"Buff-Tailed Bumble Bee",
+	"Field Cuckoo Bee",
+	"Forest Cuckoo Bee",
+	"Broken-Belted Bumble Bee",
+	"Bilberry (Blaeberry) Bumblebee",
+	"Red-tailed (Hill) Cuckoo Bee",
+	"Vestal (Southern) Cuckoo Bee",
+	"Heath Bumble Bee",
+	"Barbut's Cuckoo Bee",
+	
+	"Great Yellow Bumble Bee",
+	"Brown-banded Carder-bee",
+	"Moss Carder-bee",
+	"Red-shanked Carder-bee",
+	"Large Garden (Ruderal) Bumblebee",
+	"Short-haired Bumble Bee",
+	"Shrill Carder Bee"
+]
+
+
+function loadAll () {
+	tempstr='';
+	for (i=0; i < storedImagesMappedNames.length;i++) {
+		tempstr += '<div style="" class="imageToCreditContainer" id="' + (storedImagesMappedNames[i].replace(/\s/g, '')) +'"> <p>' + credits[i] + '</p></div>\n'
+
+
+	}
+	
+	tempstr += `<div style="margin-top:5vh" class="imageToCreditContainer">
+<p>License Links</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank"> CC BY 2.0 </a></p>
+<p><a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank"> CC BY-SA 2.5 </a></p>
+<p><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank"> CC BY-SA 3.0 </a></p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"> CC BY-SA 4.0 </a></p>
+</div>`
+	
+	var bodyElement = document.getElementById('mainContainer')
+
+	bodyElement.innerHTML = tempstr;
+	
+	loadStoredImages()
+}
+
+
+
+function loadStoredImagesSub (index) {
+	var img = new Image();
+	img.onload = function () {
+		//storedImages[storedImagesMappedNames[index]] = img
+		
+		img.classList.add("imageToCredit");
+		document.getElementById(storedImagesMappedNames[index].replace(/\s/g, '')).appendChild(img);
+
+		
+		
+		imagesLoadedSoFar += 1;
+	}
+	img.src = dataFolderURLPath + "bee-data/uncompressed-images/" + storedImagesFileName[index];
+}
+var imagesLoadedSoFar = 0;
+function loadStoredImages () {
+	
+	//var 
+	
+	//var img = new Image();
+	//img.onload = function () {
+	//	storedImages["Common Carder Bee"] = img
+	//}
+	//img.src = "data/bee-data/images/Bombus_pascuorum_(male).jpg";
+	
+	var i;
+	
+	for (i=0; i < storedImagesFileName.length; i++) {
+		loadStoredImagesSub(i)
+	}
+	
+	
+	
+}
+		
+//function tryToShowImages () {
+//	if (imagesLoadedSoFar === storedImagesFileName.length) {
+//		
+//	} else {
+//		setTimeout(tryToShowImages,1000/60)
+//	}
+//}
+	
+	
+	</script>
+<body id='body' onload="loadAll()">
+	<div id='mainContainer'> </div>
+
+</body>
+	
+</html>
+
+
