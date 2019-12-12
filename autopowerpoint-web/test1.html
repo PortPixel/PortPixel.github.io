@@ -1,0 +1,244 @@
+<html>
+
+    <head>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        
+        #container {
+            background: #FF6F61;
+            height: 1000px;
+            width: 1000px;
+        }
+        #ask-image {
+            margin-left: 200px;
+            margin-top: 50px;
+        }
+        
+        h1 {
+           font-size: 60px; 
+        }
+        
+        h3 {
+           font-size: 20px; 
+        }
+        
+        #input-box {
+            margin-left: 250px;
+            width: 500px;
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+        }
+        
+        #list-events-of-1917 {
+            display: none,
+        }
+        
+        #halifax-div {
+            display: none;
+        }
+        
+        #halifax-img {
+            margin: 50px;
+            height: 400px;
+        }
+        
+        #halifax-img2 {
+            height: 400px;
+        }
+        
+        #auto-powerpoint-logo {
+            margin-left: 400px;
+            height: 200px;
+        }
+        
+        #ask-jeeves {
+            display: none;
+        }
+        
+        #ask-jeeves-first-slide {
+            height: 100%;
+            width: 100%;
+            background-image: url("ask-jeeves-thumb.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        
+        #ask-jeeves-first-slide-input-box {
+            width: 700px;
+            margin-left: 150px;
+            margin-top:400px;
+            font-size: 30px;
+        }
+        
+        #start-let-me-ask-jeeves-that-button {
+            width: 500px;
+            margin-left: 250px;
+            margin-top:50px;
+            font-size: 30px;
+        }
+        
+        
+        #input-box {
+            width: 500px;
+            margin-left: 250px;
+            margin-top:50px;
+            font-size: 20px;
+        }
+        
+        </style>
+        
+        <script>
+            //year=randint(1880-1930), eventtags=[interesting,-physics]
+
+            
+            
+            
+            var cl = console.log
+            var inputBox;
+            var listEventsOf1917Element;
+            var halifaxDiv;
+
+            var textToTypeInInputBox = 'Something interesting that happened in\n 1917, no physics please'
+            var options = {
+                typingInterval: 300,
+                sectionTimeout: 2000,
+                eventsInterval: 500,
+            }
+
+            function setInputBox (index) {
+                cl('a')
+                inputBox.value = textToTypeInInputBox.substring(0,index)
+                
+                if (index < textToTypeInInputBox.length) {
+                    setTimeout(function (){setInputBox(index+1)}, options.typingInterval);
+                } else {
+                    
+                    setTimeout(function () {
+                        document.getElementById('ask-jeeves').style.display = 'none';
+                        document.getElementById('list-events-of-1917').style.display = '';
+                        setTimeout(function (){addEvents(0)}, 0);
+                    }, options.sectionTimeout)
+                    
+                }
+            }
+            
+            var eventsOf1917 = [
+                'First year ending in 17 for 100 years',
+                'Royal Bank of Canada takes over Quebec Bank',
+                'The Danish West Indies is sold to the United States for $25 million.',
+                'WWI: Atlantic U-boat Campaign: Germany announces its U-boats will resume unrestricted submarine warfare, rescinding the \'Sussex Pledge\'.',
+                'Woodrow Wilson is sworn in for a second term, as President of the United States.',
+                'The Republic of China terminates diplomatic relations with Germany.',
+                'Russia is declared a republic, by its Provisional Government.',
+                'Iran (which has provided weapons for Russia) refuses to support the Allied Forces after the October Revolution.',
+                'United States Navy destroyers USS Fanning and USS Nicholson capture Imperial German Navy U-boat SM U-58 off the south-west coast of Ireland.',
+                'Halifax Explosion: Two freighters collide in Halifax Harbour at Halifax, Nova Scotia, and cause a huge explosion that kills at least 1,963 people, injures 9,000 and destroys part of the city (the biggest man-made explosion in recorded history until the Trinity nuclear test in 1945).',
+                
+            ]
+            
+            
+            function addEvents (index) {
+                listEventsOf1917Element.innerHTML += '<h3>'+eventsOf1917[index]+'</h3><h3>-</h3>';
+                
+                if (index+1 < eventsOf1917.length) {
+                    setTimeout(function (){addEvents(index+1)}, options.eventsInterval);
+                } else {
+                    listEventsOf1917Element.innerHTML += '<h3>Load more</h3>';
+                    
+                }
+            }
+            
+            function endAddEventsSection () {
+                document.getElementById('list-events-of-1917').style.display = 'none';
+                document.getElementById('halifax-div').style.display = 'block';
+            }
+            
+            function showManualEntrySlide () {
+                document.getElementById('ask-jeeves-first-slide').style.display = 'none'
+                document.getElementById('ask-jeeves').style.display = 'block'
+                setTimeout(function (){setInputBox(0)}, options.sectionTimeout);
+            }
+            
+            function startLetMeAskJeevesThatForYouSlide () {
+                
+            }
+
+            function start () {
+                inputBox = document.getElementById('input-box')
+                listEventsOf1917Element = document.getElementById('list-events-of-1917')
+                halifaxDiv = document.getElementById('halifax-div')
+                
+                
+                
+                //setTimeout(function (){setInputBox(0)}, 500);
+            }
+
+
+
+        </script>
+    
+    </head>
+    
+    <body onload='start()'>
+        
+        <div id='container'>
+            
+            <div id='ask-jeeves-first-slide'>
+                
+                <textarea id='ask-jeeves-first-slide-input-box'>
+
+                </textarea>
+                
+                <button id='start-let-me-ask-jeeves-that-button' onclick= 'showManualEntrySlide()'> Ask Jeeves a Question.
+</button>
+
+            </div>
+            
+            <div id='ask-jeeves'>
+                <h1>Let me</h1>
+
+                <img id='ask-image' src='ask-jeeves-thumb.png' height="300">
+
+                <h1>that for you</h1>
+
+
+                <textarea id='input-box'>
+
+                </textarea>
+
+            </div>
+            
+            <div id='list-events-of-1917' onclick='endAddEventsSection()'>
+            </div>
+            
+            <div id='halifax-div'>
+                
+                <h1>
+                The Halifax Explosion
+                </h1>
+                
+                <h3>
+                
+                    The Halifax Explosion was a maritime disaster in Halifax, Nova Scotia, Canada, which happened on the morning of 6 December 1917. The Norwegian vessel SS Imo collided with SS Mont-Blanc, a French cargo ship laden with high explosives, in the Narrows, a strait connecting the upper Halifax Harbour to Bedford Basin, causing a large explosion on the French freighter, devastating the Richmond district of Halifax. Approximately 2,000 people were killed by the blast, debris, fires or collapsed buildings, and an estimated 9,000 others were injured The blast was the largest man-made explosion at the time, releasing the equivalent energy of roughly 2.9 kilotons of TNT (12,000 GJ).
+                
+                </h3>
+                <img id='halifax-img' src='Halifax_Explosion_blast_cloud_restored.jpg'>
+                <img id='halifax-img2' src='halifax-2.jpg'>
+                <img id='auto-powerpoint-logo' src='auto-powerpoint-logo.png'>
+                
+                <a href="presentation.pptx" download="presentation"> download </a>
+            
+            </div>
+            
+            
+        
+        </div>
+    </body>
+
+
+</html>
