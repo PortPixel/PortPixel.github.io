@@ -1,0 +1,335 @@
+<html>
+
+
+<head>
+    <title> Quiz! </title>
+    <script src='jquery-3.4.1.min.js'></script>
+    
+    <style>
+    
+    * {
+        font-family: sans-serif;
+    }
+    </style>
+    </head>
+    
+    
+    <body onload='setup()'>
+        
+        <div id='container' onclick='showNextAnswer()'>
+            <h1>QUIZ!</h1>
+            <h2>Enter topics</h2>
+            <input type="checkbox" id='useCorsProxy'>use cors proxy<br>
+            <input type="radio" name='colorScheme' id='lightMode' onchange="colorSchemeUpdate()">Light mode<br>
+            <input type="radio" name='colorScheme' id='darkMode' onchange="colorSchemeUpdate()">Dark mode<br>
+            <input type="radio" name='colorScheme' id='epilepsyMode' onchange="colorSchemeUpdate()">Epilepsy mode<br>
+            <br>
+        </div>
+        
+        <input id ='inputBox'type='text' onkeydown="runTopicThingIfEnterKey()"></input>
+        
+        <script>
+        
+        'use strict';
+        
+        var cl = console.log
+        
+        function runTopicThingIfEnterKey(ele) {
+            if(event.key === 'Enter' && inputBox.value.length > 2) {
+                genQuestion(inputBox.value);  
+            }
+        }
+        
+        var getJSON = function(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.responseType = 'json';
+            xhr.onload = function() {
+                var status = xhr.status;
+                if (status === 200) {
+                    callback(null, xhr.response);
+                } else {
+                    callback(status, xhr.response);
+                }
+            };
+            xhr.send();
+        }
+        
+        function genRandomHueColor () {
+            return('hsl('+Math.random()*360+', 100%, 50%')
+        }
+        
+        function updateEpilepsyMode () {
+            body.style.color = genRandomHueColor();
+            body.style.backgroundColor = genRandomHueColor();
+            
+            if (document.getElementById('epilepsyMode').checked) {
+                setTimeout(updateEpilepsyMode, 100/6)
+            } else {
+                colorSchemeUpdate();
+            }
+        }
+        
+        function colorSchemeUpdate () {
+            darkModeRadioButton = document.getElementById('darkMode')
+            epilepsyModeRadioButton = document.getElementById('epilepsyMode')
+            
+            if (darkModeRadioButton.checked) {
+                body.style.color = '#FFF'
+                body.style.backgroundColor = '#000'
+                
+            } else {
+                if (epilepsyModeRadioButton.checked) {
+                    updateEpilepsyMode()
+                } else {
+                    body.style.color = '#000'
+                    body.style.backgroundColor = '#FFF'
+                }
+            }
+        }
+        
+        var darkModeRadioButton;
+        var epilepsyModeRadioButton;
+        var container;
+        var inputBox;
+        var body;
+        function setup () {
+            addToPreWritten('physics', 'Most famous physicist currently?', 'Albert Einstein')
+            addToPreWritten('teachers', 'Are teachers useful?', 'Not always, says Mr')
+            addToPreWritten('teacher', 'Are teachers useful?', 'Not always, says Mr')
+            addToPreWritten('einstein', 'A physicist?', 'Yes')
+            addToPreWritten('spacetime', 'What is spacetime?', 'Any mathematical model which fuses the three dimensions of space and the one dimension of time into a single four-dimensional manifold.')
+            addToPreWritten('pen', 'Most popular colour?', 'Black')
+            addToPreWritten('pens', 'Most popular colour?', 'Black')
+            addToPreWritten('book', 'Most stolen book?', 'The bible')
+            addToPreWritten('books', 'Most stolen book?', 'The bible')
+            addToPreWritten('relativity', 'Albert Einstein published the theory of special relativity in?', 'The Bible')
+            addToPreWritten('huygens', 'Nationality?', 'Dutch')
+            
+            
+            container = document.getElementById('container')
+            inputBox = document.getElementById('inputBox')
+            
+            darkModeRadioButton = document.getElementById('darkMode')
+            epilepsyModeRadioButton = document.getElementById('epilepsyMode')
+            body = document.body;
+        }
+        
+        function showNextAnswer () {
+            if (lastQuestionData !== undefined) {
+                if (!lastQuestionData.failed) {
+                    container.innerHTML += 'A:' + lastQuestionData.answer+'<br>';
+                }
+                
+                lastQuestionData = undefined;
+            }
+        }
+        
+        var lastQuestionData = undefined;
+        
+        function genQuestion(topic) {
+            topic = topic.split(' ').join('_')
+            var url = ''
+            if (document.getElementById('useCorsProxy').checked) {
+                cl('using cors proxy')
+                url += 'http://cors-anywhere.herokuapp.com/'
+            }
+            url += 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles='
+            url += topic;
+            getJSON(url,
+                function(err, data) {
+                if (err !== null) {
+                    cl('Something went wrong: ' + err);
+                } else {
+                    cl(data);
+                    var questionData = genFrom(data.query.pages, topic)
+                    lastQuestionData = questionData
+                    if (questionData.failed) {
+                        container.innerHTML += 'question gen failed'+'<br>'
+                    } else {
+                        container.innerHTML += 'Q:' + questionData.question+'<br>';
+                    }
+                    
+                }
+            });
+        }
+                
+                
+        function stripStr(str) {
+            str = str.split('\'').join('')
+            str = str.split('"').join('')
+            str = str.split(']').join('')
+            str = str.split('[').join('')
+            str = str.split('*').join('')
+            str = str.split('>').join('')
+            str = str.split('<').join('')
+            str = str.split(')').join('')
+            str = str.split('(').join('')
+            str = str.trim()
+            return(str)
+        }
+        
+        
+        
+        function addToPreWritten(topic, question, answer) {
+            preWrittenTopicTexts.push({topic, question, answer})
+        }
+        var preWrittenTopicTexts = [];
+                
+        function genFrom (pages, topic) {
+            var i;
+            var question;
+            var answer;
+            var filledFromPreWritten = false;
+            for (i=0; i < preWrittenTopicTexts.length; i++) {
+                if (preWrittenTopicTexts[i].topic.toUpperCase() === topic.toUpperCase()) {
+                    question = preWrittenTopicTexts[i].question;
+                    answer = preWrittenTopicTexts[i].answer;
+                    filledFromPreWritten = true;
+                    cl('filled from pre')
+                    break;
+                }
+            }
+            
+            if (!filledFromPreWritten) {
+                var page = pages[Object.keys(pages)[0]]
+                
+                cl(page)
+                cl(page.title)
+                cl(page.revisions)
+                if (page.revisions) {
+                        
+                    var content = page.revisions[0]["*"];
+                    
+                    cl(content)
+                    
+                    cl(content.indexOf(':'))
+                    
+                    var punctuation = [',','.','-', '<', '{', '}', '|', '=', '(']
+                    
+                    
+                    
+                    var colonIndex = content.indexOf(': ');
+                    
+                    for (i = colonIndex-1; i > -1; i--) {
+                        if (punctuation.includes(content[i])) {
+                            question = content.substring(i+1, colonIndex)
+                            break;
+                        }
+                    }
+                    
+                    if (question) {
+                        for (i = colonIndex+1; i < content.length; i++) {
+                            if (punctuation.includes(content[i])) {
+                                answer = content.substring(colonIndex+1, i)
+                                break;
+                            }
+                        }
+                        
+                        if (answer) {
+                            for (i=0; i < punctuation.length; i++) {
+                                question = question.split(punctuation[i]).join('')
+                            }
+                            question = stripStr(question)
+                            question = question.trim()
+                            question = question[0].toUpperCase() + question.substr(1)
+                            
+                            for (i=0; i < punctuation.length; i++) {
+                                answer = answer.split(punctuation[i]).join('')
+                            }
+                            answer = stripStr(answer)
+                            answer = answer[0].toUpperCase() + answer.substr(1)
+                            
+                            question += '?'
+                            cl(question)
+                            cl(answer)
+                        } else {
+                            cl('no answer generated')
+                        }
+                        
+                        
+                        
+                    } else {
+                        cl('no question generated')
+                        
+                        
+                        //attempt 2
+                        
+                        content = content.trim();
+                        var indexToReadFrom = 0;
+                        
+                        if (content[0] === '{') {
+                            var curlyBracketCounter = 1;
+                            
+                            for (i=1; i < content.length; i++) {
+                                if (content[i] === '{') {
+                                    curlyBracketCounter += 1; 
+                                }
+                                if (content[i] === '}') {
+                                    curlyBracketCounter -= 1; 
+                                    
+                                    if (curlyBracketCounter === 0) {
+                                        //cl(content.substr(i+1).trim())
+                                        if (content.substr(i+1).trim()[0] !== '{') {
+                                            indexToReadFrom = i+1;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        cl(indexToReadFrom)
+                        cl(content.substr(0,indexToReadFrom))
+                        for (; indexToReadFrom < content.length; indexToReadFrom++) {
+                            cl(content[indexToReadFrom])
+                            if (!punctuation.includes(content[indexToReadFrom])) {
+                                break;
+                            }
+                        }
+                        
+                        cl(indexToReadFrom)
+                        
+                        
+                        answer = undefined;
+                        
+                        for (i = indexToReadFrom; i < content.length; i++) {
+                            if (punctuation.includes(content[i])) {
+                                answer = content.substring(indexToReadFrom, i)
+                                break;
+                            }
+                        }
+                        
+                        
+                        if (answer) {
+                            
+                            cl('What is a ' +topic +'?')
+                            
+                            question = 'What is a ' +topic +'?'
+                            cl(answer)
+                            answer = stripStr(answer)
+                            answer = answer[0].toUpperCase() + answer.substr(1)
+                            
+                            cl(answer)
+                        } else {
+                            cl('no answer generated on attempt 2')
+                        }
+                    }
+                    
+                    
+                } else {
+                    cl('no wiki page for topic')
+                }
+            }
+            cl(answer)
+            cl(question)
+            return({
+                question: question,
+                answer: answer,
+                failed: !(answer && question),
+            })
+        }
+        </script>
+        
+    </body>
+</html>
