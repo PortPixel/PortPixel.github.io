@@ -164,7 +164,7 @@
             str = str.split('>').join('')
             str = str.split('<').join('')
             str = str.split(')').join('')
-            str = str.split('(').join('')
+            str = str.split('=').join('')
             str = str.trim()
             return(str)
         }
@@ -201,11 +201,20 @@
                         
                     var content = page.revisions[0]["*"];
                     
-                    cl(content)
+                    content = stripStr(content);
+                    
                     
                     cl(content.indexOf(':'))
                     
-                    var punctuation = [',','.','-', '<', '{', '}', '|', '=', '(']
+                    var punctuation = [',','.','-', '<', '{', '}', '|', '=', '(', '\n']
+                    
+                    cl(content)
+                    cl(content.replace(/{[\s\S]*?}/g, ''))
+                    
+                    var /*contentWithStuffInTagsStripped*/content = content.replace(/{[\s\S]*?}/g, '').split('}').join('');//last part removes any '}'s left from regex replacing, eg 'test {one} two {{three}}'
+                    
+                    
+                    cl(content)
                     
                     
                     
@@ -219,8 +228,15 @@
                     }
                     
                     if (question) {
+                        cl(question)
+                        
                         for (i = colonIndex+1; i < content.length; i++) {
-                            if (punctuation.includes(content[i])) {
+                            if (!punctuation.includes(content[i]) && content[i] !==' ') {
+                                break;
+                            }
+                        }
+                        for (; i < content.length; i++) {
+                            if (punctuation.includes(content[i]) && !punctuation.includes(content[i-1])) {
                                 answer = content.substring(colonIndex+1, i)
                                 break;
                             }
@@ -237,6 +253,7 @@
                             for (i=0; i < punctuation.length; i++) {
                                 answer = answer.split(punctuation[i]).join('')
                             }
+                            cl(answer)
                             answer = stripStr(answer)
                             answer = answer[0].toUpperCase() + answer.substr(1)
                             
