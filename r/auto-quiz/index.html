@@ -307,10 +307,32 @@
                         
                         cl(indexToReadFrom)
                         
+                        var tempArr = content.substring(indexToReadFrom).trim().split(' ');
+                        for (i=tempArr.length-1; i > -1; i--) {
+                            tempArr.splice(i, 1, ...tempArr[i].split('\n'))
+                        }
+                        cl(tempArr)
+                        if (tempArr[1].toLowerCase().trim() === 'may' && tempArr[2].toLowerCase().trim() === 'refer' && tempArr[3].toLowerCase().trim() === 'to:') {
+                            cl('need to skip past this common intro on disambiguation pages')
+                            indexToReadFrom = indexToReadFrom + content.substring(indexToReadFrom).indexOf(':')+1
+                        }
+                        cl(indexToReadFrom)
+                        
+                        for (; indexToReadFrom < content.length; indexToReadFrom++) {
+                            cl(content[indexToReadFrom])
+                            if (!punctuation.includes(content[indexToReadFrom])) {
+                                break;
+                            }
+                        }
+                        
+                        cl(indexToReadFrom)
+                        
+                        
                         
                         answer = undefined;
                         
                         for (i = indexToReadFrom; i < content.length; i++) {
+                            cl(content[i])
                             if (punctuation.includes(content[i])) {
                                 answer = content.substring(indexToReadFrom, i)
                                 break;
@@ -322,7 +344,7 @@
                             
                             cl('What is a ' +topic +'?')
                             
-                            question = 'What is a ' +topic +'?'
+                            question = 'What is a ' +topic+'?'
                             cl(answer)
                             answer = stripStr(answer)
                             answer = answer[0].toUpperCase() + answer.substr(1)
