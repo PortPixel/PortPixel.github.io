@@ -19,7 +19,7 @@
         <div id='container' onclick='showNextAnswer()'>
             <h1>QUIZ!</h1>
             <h2>Enter topics</h2>
-            <input type="checkbox" id='useCorsProxy'>use cors proxy<br>
+            <input type="checkbox" id='useCorsProxy'>Don't use cors proxy<br>
             <input type="radio" name='colorScheme' id='lightMode' onchange="colorSchemeUpdate()">Light mode<br>
             <input type="radio" name='colorScheme' id='darkMode' onchange="colorSchemeUpdate()">Dark mode<br>
             <input type="radio" name='colorScheme' id='epilepsyMode' onchange="colorSchemeUpdate()">Epilepsy mode<br>
@@ -130,7 +130,7 @@
         function genQuestion(topic) {
             topic = topic.split(' ').join('_')
             var url = ''
-            if (document.getElementById('useCorsProxy').checked) {
+            if (!document.getElementById('useCorsProxy').checked) {
                 cl('using cors proxy')
                 url += 'https://cors-anywhere.herokuapp.com/'
             }
