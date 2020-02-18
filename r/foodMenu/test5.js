@@ -12,7 +12,7 @@ var testShopData = {
     openingHoursAsStrShort: '11-5 Wed to Sun',
     openingHoursAsStrLong: '11-5 Wed to Sun, 7 days per week school holidays',
     headerImageName: 'cambridge-crepes-1.jpg',
-    infoAsText: 'We serve optionally gluten & dairy free crepes. Please for further information about allergies and intolerances.',
+    infoAsText: 'We optionally serve gluten & dairy free crepes. Please ask for further information about allergies and intolerances.',
     menu: {
         categoryOrder: [
             'sweet',
