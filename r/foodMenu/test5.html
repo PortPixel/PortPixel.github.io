@@ -1,0 +1,205 @@
+<html>
+
+
+<head>
+    
+    <style>
+    
+    * {
+        font-family: sans-serif;
+        margin: 0;
+    }
+    .categoryHeadingDiv {
+        font-size: 5vw;
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+    .categoryDiv {
+        padding-top: 2vw;
+        overflow: hidden;
+    }
+    
+    
+    .itemsContainerDiv {
+        transition: max-height 0.2s ease-out;
+        max-height: 0;
+    }
+    
+    
+    body {
+        text-size-adjust: 100%; 
+        -ms-text-size-adjust: 100%; 
+        -moz-text-size-adjust: 100%; 
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    
+    .itemDiv {
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        border-bottom: 1px solid #aaa;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .itemPriceDiv {
+        font-size: 3vw;
+        right: 0px;
+    }
+    
+    .itemNameDiv {
+        font-size: 3vw;
+    }
+    
+    .headerImageDiv {
+        height: 25vh;
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover; /* Resize the background image to cover the entire container */
+    }
+    
+    .headerDiv {
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        padding-left: 2vw;
+        border-bottom: 1px solid #aaa;
+    }
+    
+    .shopNameDiv {
+        font-size: 7vw;
+        padding-bottom: 1vh;
+    }
+    
+    .openingHoursOuterContainerDiv {
+        display: flex;
+    }
+    
+    .openingHoursDiv {
+        padding-left: 1vw;
+        font-size: 2vw;
+    }
+    
+    .clockSymbolDiv {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGRhdGEtbmFtZT0iTGF5ZXIgMSIgdmlld0JveD0iMCAwIDMyIDMyIiB4PSIwcHgiIHk9IjBweCI+PHRpdGxlPmV4cGFuZC1ub3RpdmljYXRpb248L3RpdGxlPjxwYXRoIGQ9Ik0xNiwzQTEzLDEzLDAsMSwwLDI5LDE2LDEzLDEzLDAsMCwwLDE2LDNabTAsMjRBMTEsMTEsMCwxLDEsMjcsMTYsMTEsMTEsMCwwLDEsMTYsMjdaIj48L3BhdGg+PHBhdGggZD0iTTE3LDE1LjVWOGExLDEsMCwwLDAtMiwwdjhhMSwxLDAsMCwwLC40LjhsNS4zMyw0YTEsMSwwLDAsMCwuNi4yLDEsMSwwLDAsMCwuNi0xLjhaIj48L3BhdGg+PC9zdmc+");
+        height: 3vw;
+        width: 3vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .infoSymbolDiv {
+        
+        background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uO3RleHQtcmVuZGVyaW5nOmdlb21ldHJpY1ByZWNpc2lvbjtpbWFnZS1yZW5kZXJpbmc6b3B0aW1pemVRdWFsaXR5OyIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHg9IjBweCIgeT0iMHB4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KICAgCiAgICAuZmlsMCB7ZmlsbDojMDAwMDAwO2ZpbGwtcnVsZTpub256ZXJvfQogICAKICA8L3N0eWxlPjwvZGVmcz48Zz48cGF0aCBjbGFzcz0iZmlsMCIgZD0iTTUwIDE0LjAzYzE5Ljg2LDAgMzUuOTcsMTYuMTEgMzUuOTcsMzUuOTcgMCwxOS44NSAtMTYuMTIsMzUuOTcgLTM1Ljk3LDM1Ljk3IC0xOS44NiwwIC0zNS45NywtMTYuMTEgLTM1Ljk3LC0zNS45NyAwLC0xOS44NiAxNi4xLC0zNS45NyAzNS45NywtMzUuOTd6bTAgMjguMDhjLTEuOTYsMCAtMy41NCwtMS41OCAtMy41NCwtMy41NCAwLC0xLjk2IDEuNTgsLTMuNTQgMy41NCwtMy41NCAxLjk1LDAgMy41NCwxLjU4IDMuNTQsMy41NCAwLDEuOTYgLTEuNTksMy41NCAtMy41NCwzLjU0em0yLjE4IDIyLjg3YzAsMi44NiAtNC4zNiwyLjg2IC00LjM2LDBsMCAtMTYuN2MwLC0yLjg2IDQuMzYsLTIuODYgNC4zNiwwbDAgMTYuN3ptLTIuMTggLTQ2LjU5Yy0xNy40NSwwIC0zMS42MSwxNC4xNiAtMzEuNjEsMzEuNjEgMCwxNy40NiAxNC4xNSwzMS42MSAzMS42MSwzMS42MSAxNy40NSwwIDMxLjYxLC0xNC4xNSAzMS42MSwtMzEuNjEgMCwtMTcuNDUgLTE0LjE2LC0zMS42MSAtMzEuNjEsLTMxLjYxeiI+PC9wYXRoPjwvZz48L3N2Zz4=");
+        height: 3vw;
+        width: 3vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .shopInfoOuterContainerDiv {
+        padding-top: 1vh;
+        display: inline-flex;
+        /* justify-content: space-between; */
+        /* flex-wrap: wrap; */
+        
+    }
+    
+    .shopInfoDiv {
+        padding-left: 1vw;
+        font-size: 2vw;
+        width: 70vw;
+    }
+    
+    .popupItemDivOuterContainer {
+        position: fixed;
+        height: 30vh;
+        width: 100vw;
+        bottom: 0;
+        background-color: #FFF;
+        box-shadow: 0 2vh 4vh 0 rgba(0, 0, 0, 0.2), 0 3vh 10vh 0 rgba(0, 0, 0, 0.19);
+    }
+        
+    .popupItemDiv {
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .mainContainerDiv {
+        padding-bottom: 30vh;/*should be same as height of popupItemDivOuterContainer (so can still scroll to see entire menu even when popup is open)*/
+    }
+    
+    
+    
+    .popupItemNameDiv {
+        font-size: 5vw;
+    }
+    
+    .popupItemPriceDiv {
+        font-size: 5vw;
+        /* right: 0px; */
+        page-break-after: always;
+    }
+    
+    .popupItemAllergensDiv {
+        padding-top: 1vh;
+        font-size: 4vw;
+        line-height: 4vh;
+    }
+    
+    .rowBreakerDiv {
+        width: 100%;
+    }
+    
+    .footerDiv {
+        padding-top: 2vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 2vh;
+        
+    }
+    
+    .footerInnerContainerDiv {
+        text-align: center;
+        width: 80vw;
+        font-size: 3vw;
+    }
+    
+    .popupItemCategoriesDiv {
+        padding-top: 1vh;
+        font-size: 3vw;
+    }
+    
+    
+    
+    </style>
+    
+    <script src='test5.js'></script>
+    
+</head>
+
+<body onload='setup()'>
+
+    <!---->
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!---->
+
+</body>
+</html>
