@@ -1633,6 +1633,8 @@ if (location.search.includes("story=false")) {
   storyData = [];
   cl("removing any loaded story data as story=false flag in url?<>");
 }
+cl('disabling story')
+storyData = [];
 var storyDataInternals = {startCameraOffsetX:undefined, startCameraOffsetY:undefined, startCameraZoom:undefined, haveSetStartCamera:false};
 function renderStoryIfRequired() {
   var preventNormalRendering = false;
